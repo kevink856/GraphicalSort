@@ -19,9 +19,13 @@ import sorts.QuickSort;
 public class Gui {
 
 	private JPanel drawPanel;
+	public static JButton runButton;
+	private boolean finished;
 
 	public Gui(JPanel drawPanel) {
 		this.drawPanel = drawPanel;
+		runButton = new JButton("Run");
+		this.finished = true;
 	}
 
 	public void makeGui(JFrame guiFrame, JFrame settingsFrame, JFrame errorsFrame, List sortList, JPanel guiPanel, JPanel titlePanel) {
@@ -32,16 +36,16 @@ public class Gui {
 		guiFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		guiFrame.setResizable(false);
 	
-		JButton button1 = new JButton("Run");
-		button1.addActionListener(new ActionListener() {
+		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 	
-				if(sortList.getSelectedItem() == null) {
-	
+				if(sortList.getSelectedItem() == null || finished) {
+
 					errorsFrame.setVisible(true);
 	
 				} else {
 	
+					runButton.setEnabled(false);
 					switch(sortList.getSelectedItem()) {
 	
 					case("Bubble Sort"):
@@ -60,25 +64,28 @@ public class Gui {
 						new QuickSort().sort(drawPanel);
 						break;
 					}
+
+					finished = true;
 	
 				}
 	
 			}
 		} );
 	
-		JButton button2 = new JButton("Settings");
-		button2.addActionListener(new ActionListener() {
+		JButton settingsButton = new JButton("Settings");
+		settingsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 	
 				settingsFrame.setVisible(true);
 				sortList.select(0);
+				finished = false;
 	
 			}
 		} );
 	
 		guiPanel.setBackground(Color.CYAN);
-		guiPanel.add(button1);
-		guiPanel.add(button2);
+		guiPanel.add(runButton);
+		guiPanel.add(settingsButton);
 	
 		titlePanel.setBackground(Color.BLACK);
 		drawPanel.setBackground(Color.BLACK);

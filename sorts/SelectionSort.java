@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import main.Main;
+import panels.Gui;
 
 public class SelectionSort implements Sort {
 
@@ -46,6 +47,7 @@ public class SelectionSort implements Sort {
 						min = 0;
 						done = false;
                 		drawPanel.repaint();
+						Gui.runButton.setEnabled(true);
                 		timer.stop();
 
             		} else {

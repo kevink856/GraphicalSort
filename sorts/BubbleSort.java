@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import main.Main;
+import panels.Gui;
 
 public class BubbleSort implements Sort {
 
@@ -37,6 +38,7 @@ public class BubbleSort implements Sort {
 						i = 0;
 						j = 0;
                 		drawPanel.repaint();
+						Gui.runButton.setEnabled(true);
                 		timer.stop();
 
             		} else {
