@@ -11,6 +11,14 @@ import main.Main;
 public class BubbleSort implements Sort {
 
 	private Timer timer;
+	private int i, j;
+
+	public BubbleSort() {
+
+		this.i = 0;
+		this.j = 0;
+
+	}
 
 	@Override
 	public void sort(JPanel drawPanel) {
@@ -19,50 +27,50 @@ public class BubbleSort implements Sort {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-            	if(Main.sorti == Main.barCount - 1) {
+            	if(i == Main.barCount - 1) {
 
-            		if(Main.sortj == Main.barCount - 1) {
+            		if(j == Main.barCount - 1) {
 
             			Main.currentBar = -1;
                 		Main.ghostBar = -1;
                 		Main.lastBar = -1;
-						Main.sorti = 0;
-						Main.sortj = 0;
+						i = 0;
+						j = 0;
                 		drawPanel.repaint();
                 		timer.stop();
 
             		} else {
 
             			Main.ghostBar = Main.currentBar;
-            			Main.currentBar = Main.sortj + 1;
+            			Main.currentBar = j + 1;
             			drawPanel.repaint();
-            			Main.sortj++;
+            			j++;
 
             		}
 
             	} else {
 
-            		if(Main.sortj == Main.barCount - Main.sorti - 1) {
+            		if(j == Main.barCount - i - 1) {
 
-            			Main.lastBar = Main.barCount - Main.sorti - 1;
-            			Main.sortj = 0;
-            			Main.sorti++;
+            			Main.lastBar = Main.barCount - i - 1;
+            			j = 0;
+            			i++;
 
             		} else {
 
             			Main.ghostBar = Main.currentBar;
-            			Main.currentBar = Main.sortj + 1;
+            			Main.currentBar = j + 1;
 
-            			if(Main.barHeights[Main.sortj] > Main.barHeights[Main.sortj + 1]) {
+            			if(Main.barHeights[j] > Main.barHeights[j + 1]) {
 
-        					int temp = Main.barHeights[Main.sortj];
-        					Main.barHeights[Main.sortj] = Main.barHeights[Main.sortj + 1];
-        					Main.barHeights[Main.sortj + 1] = temp;
+        					int temp = Main.barHeights[j];
+        					Main.barHeights[j] = Main.barHeights[j + 1];
+        					Main.barHeights[j + 1] = temp;
 
         				}
 						
             			drawPanel.repaint();
-            			Main.sortj++;
+            			j++;
 
             		}
 
